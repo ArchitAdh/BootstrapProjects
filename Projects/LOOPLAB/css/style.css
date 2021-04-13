@@ -1,3 +1,9 @@
+/* html {
+  scroll-behavior: smooth;
+} */
+
+/* works fine but trying to achieve same using js */
+
 body {
   background: #333;
   color: #fff;

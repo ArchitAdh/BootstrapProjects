@@ -25,9 +25,9 @@
     <title>Bootstrap theme</title>
   </head>
 
-  <body>
+  <body data-spy = "scroll" data-target = '#main-nav' id="home">
     <!-- Start here -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="main-nav">
       <div class="container">
         <a href="index.html" class="navbar-brand">LoopLAB</a>
         <button
@@ -40,7 +40,7 @@
         <div id="navbarCollapse" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a href="#home-section" class="nav-link">Home</a>
+              <a href="#home" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
               <a href="#explore-head-section" class="nav-link">Head</a>
@@ -317,6 +317,94 @@
       </div>
     </section>
 
+    <!-- Footer -->
+    <footer id="main-footer" class="bg-dark">
+      <div class="container">
+        <div class="row">
+          <div class="text-center py-4 col">
+            <h3>LoopLAB</h3>
+            <p>copyright &copy; <span id="year"></span></p>
+            <button
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#contactModal"
+            >
+              Contact Us
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Contact Modal  -->
+    <div class="modal fade text-dark" id="contactModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Contact Us<h5/>
+              <button class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            <form >
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary btn-block">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div
+      class="modal fade"
+      id="contactModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
     <!-- jquery -->
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -340,6 +428,25 @@
     <script>
       //get the current year for copyright
       $("#year").text(new Date().getFullYear());
+
+      //init scrollspy
+      $('body').scrollspy({target: '#main-nav'}); 
+
+      // Smooth Scrolling
+  $("#main-nav a").on('click', function (event) {
+    if (this.hash !== "") {
+      event.preventDefault();
+
+      const hash = this.hash;
+
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function () {
+
+        window.location.hash = hash;
+      });
+    }
+  });
     </script>
   </body>
 </html>
